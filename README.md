@@ -8,7 +8,7 @@ TravelBot is an open-source project designed to help users find budget-friendly 
 - **Email Notifications:** Receive updates directly in your email with a list of the cheapest flights that align with your chosen criteria.
 ## Implementation Details
 
-- **Web Scraping with Requests:** TravelBot utilizes the Requests library to scrape relevant data from [travel websites](https://www.azair.eu/), ensuring accurate and up-to-date flight information.
+- **Web Scraping with Requests:** TravelBot utilizes the Requests library to scrape relevant data from https://www.azair.eu/, ensuring accurate and up-to-date flight information.
 
 - **Email Delivery with smtplib and email.mime:** To send personalized flight suggestions, the bot employs the smtplib library and email.mime module, allowing for seamless email communication with users.
 
