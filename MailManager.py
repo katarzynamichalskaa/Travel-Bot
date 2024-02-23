@@ -12,7 +12,18 @@ class MailManager():
         self.receiver_email = receiver
 
     def get_flights_info(self):
-        flights = FindFlights("https://www.azair.eu/azfin.php?searchtype=nonflexi&tp=0&isOneway=return&srcAirport=Poznan+%5BPOZ%5D&srcFreeAirport=&srcTypedText=pozn&srcFreeTypedText=&srcMC=&dstAirport=Anywhere+%5BXXX%5D&anywhere=true&dstTypedText=any&dstFreeTypedText=&dstMC=&depmonth=202408&depdate=2024-08-11&aid=0&arrmonth=202408&arrdate=2024-08-25&plus5=true&minDaysStay=2&maxDaysStay=8&dep0=true&dep1=true&dep2=true&dep3=true&dep4=true&dep5=true&dep6=true&arr0=true&arr1=true&arr2=true&arr3=true&arr4=true&arr5=true&arr6=true&samedep=true&samearr=true&minHourStay=0%3A45&maxHourStay=16%3A30&minHourOutbound=0%3A00&maxHourOutbound=24%3A00&minHourInbound=0%3A00&maxHourInbound=24%3A00&autoprice=true&adults=4&children=0&infants=0&maxChng=1&currency=PLN&lang=en&indexSubmit=Search")
+
+        params = {
+            'srcAirport': 'Poznan[POZ]',
+            'adults': 4,
+            'depdate': '12.8.2024',
+            'arrdate': '30.9.2024',
+            'maxDaysStay': 10,
+            'currency': 'PLN'
+        }
+
+        flights = FindFlights()
+        flights.generate_url({**flights.default_params, **params})
         return flights.find_()
 
     def create_message(self):
@@ -23,7 +34,7 @@ class MailManager():
         return f"Hello!\n\nHere are some cheap flights for you:\n\n{table}"
 
     def send(self):
-        subject = "Tanie loty"
+        subject = "Cheap flights"
         message_body = self.create_message()
 
         message = MIMEMultipart()
