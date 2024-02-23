@@ -59,7 +59,6 @@ class FindFlights():
     def generate_url(self, params):
         encoded_params = urlencode(params)
         self.full_url = f"{self.base_url}?{encoded_params}"
-        print("Full URL:", self.full_url)
 
     def get_content(self):
 
@@ -83,12 +82,13 @@ class FindFlights():
 
             for product in products:
                 price_and_lenght_of_stay = product.find('div', class_='totalPrice').text.strip()
-                numeric_part = price_and_lenght_of_stay.split()[0]
+                price = price_and_lenght_of_stay.split()[0]
+                length_of_stay = price_and_lenght_of_stay.split()[5]
 
-                if int(numeric_part) < 750:
+                if int(price) < 750:
                     from_ = product.find('span', class_='from').text.strip()
                     to_ = product.find('span', class_='to').text.strip()
                     link = product.find('div', class_='bookmark').find('a')['href']
-                    budgetFligts.append([price_and_lenght_of_stay, from_, to_, "https://www.azair.eu/" + link])
+                    budgetFligts.append([from_, to_, price + ' ' + self.default_params['currency'], length_of_stay + " days", "https://www.azair.eu/" + link])
 
             return budgetFligts

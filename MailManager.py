@@ -29,9 +29,17 @@ class MailManager():
     def create_message(self):
         flights_info = self.get_flights_info()
 
-        table = tabulate(flights_info, headers=["Price & Length of Stay", "Departure", "Arrival", "Link"], tablefmt="psql")
+        table = tabulate(flights_info, headers=["Departure", "Arrival" ,"Price", "Days", "Link"], tablefmt="html")
 
-        return f"Hello!\n\nHere are some cheap flights for you:\n\n{table}"
+        message = f"""
+                <html><body><p>Hello!</p>
+                <p>Here are some cheap flights for you:</p>
+                {table}
+                <p>Regards,</p>
+                <p>Travel Bot</p>
+                </body></html>
+                """
+        return message
 
     def send(self):
         subject = "Cheap flights"
@@ -43,7 +51,7 @@ class MailManager():
         message["To"] = self.receiver_email
         message["Subject"] = subject
 
-        message.attach(MIMEText(message_body, "plain"))
+        message.attach(MIMEText(message_body, "html"))
 
         try:
             server = smtplib.SMTP("smtp.gmail.com", 587)
