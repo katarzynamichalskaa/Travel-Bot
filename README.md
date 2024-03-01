@@ -17,4 +17,5 @@ TravelBot is an open-source project designed to help users find budget-friendly 
 ## Usage 
 Example e-mail returned by bot
 
-![Bez tytułu](https://github.com/katarzynamichalskaa/Travel-Bot/assets/92379328/c6772a1d-cdc4-41e3-afb2-03c0add389c5)
+![image](https://github.com/katarzynamichalskaa/Travel-Bot/assets/92379328/500bb6a1-9664-45b7-8917-ddc7036e9e0b)
+
